@@ -1,5 +1,6 @@
 import {
   BelongsTo,
+  BelongsToMany,
   Column,
   DataType,
   ForeignKey,
@@ -7,6 +8,8 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { Company } from 'src/company/models/company.model';
+import { Driver } from 'src/driver/models/driver.model';
+import { Machine_Driver } from 'src/machine_driver/models/machine_driver.model';
 
 interface MachineAttr {
   name: string;
@@ -35,4 +38,7 @@ export class Machine extends Model<Machine, MachineAttr> {
 
   @BelongsTo(() => Company)
   company: Company;
+
+  @BelongsToMany(() => Driver, () => Machine_Driver)
+  drivers: Machine[];
 }

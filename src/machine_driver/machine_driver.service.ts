@@ -17,15 +17,11 @@ export class Machine_DriverService {
     return new_machine;
   }
   async getAllMachine_Driver(): Promise<Machine_Driver[]> {
-    const companies = await this.machineRepo.findAll({
-      include: { all: true },
-    });
+    const companies = await this.machineRepo.findAll();
     return companies;
   }
   async getMachine_DriverById(id: number): Promise<Machine_Driver> {
-    const machine = await this.machineRepo.findByPk(id, {
-      include: { all: true },
-    });
+    const machine = await this.machineRepo.findByPk(id);
     // const machine = await this.machineRepo.findOne({ where: { id } });
     if (!machine) {
       throw 'No such a machine found!';

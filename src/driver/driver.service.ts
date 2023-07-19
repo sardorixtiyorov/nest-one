@@ -13,11 +13,15 @@ export class DriverService {
     return new_driver;
   }
   async getAllDriver(): Promise<Driver[]> {
-    const companies = await this.driverRepo.findAll();
+    const companies = await this.driverRepo.findAll({
+      include: { all: true },
+    });
     return companies;
   }
   async getDriverById(id: number): Promise<Driver> {
-    const driver = await this.driverRepo.findByPk(id);
+    const driver = await this.driverRepo.findByPk(id, {
+      include: { all: true },
+    });
     // const driver = await this.driverRepo.findOne({ where: { id } });
     if (!driver) {
       throw 'No such a driver found!';
