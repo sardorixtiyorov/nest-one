@@ -11,6 +11,12 @@ import { Driver } from './driver/models/driver.model';
 import { DriverModule } from './driver/driver.module';
 import { Machine_Driver } from './machine_driver/models/machine_driver.model';
 import { Machine_DriverModule } from './machine_driver/machine_driver.module';
+import { RolesModule } from './roles/roles.module';
+import { Role } from './roles/models/role.model';
+import { UsersModule } from './users/users.module';
+import { User } from './users/models/user.model';
+import { UserRoles } from './roles/models/user-roles.model';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -25,7 +31,16 @@ import { Machine_DriverModule } from './machine_driver/machine_driver.module';
       username: process.env.POSTGRES_USER,
       password: String(process.env.POSTGRES_PASSWORD),
       database: process.env.POSTGRES_DB,
-      models: [Company, Machine, Builder, Driver, Machine_Driver],
+      models: [
+        Company,
+        Machine,
+        Builder,
+        Driver,
+        Machine_Driver,
+        Role,
+        User,
+        UserRoles,
+      ],
       autoLoadModels: true,
       logging: true,
     }),
@@ -34,6 +49,9 @@ import { Machine_DriverModule } from './machine_driver/machine_driver.module';
     MachineModule,
     DriverModule,
     Machine_DriverModule,
+    RolesModule,
+    UsersModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
